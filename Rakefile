@@ -27,9 +27,10 @@ namespace :workspaces do
     end
     for shellrc in %w[ .bashrc .zshrc .config/fish/config.fish ] do
       if !File.exist?("#{ENV['HOME']}/#{shellrc}") or File.readlines("#{ENV['HOME']}/#{shellrc}").grep(/source $HOME\/dotfiles\/workspace\/customizations\.sh/).size == 0
-      File.open("#{ENV['HOME']}/.bashrc", "a+") do |f|
-        # exports
-        f.puts 'source $HOME/dotfiles/workspace/customizations.sh'
+        File.open("#{ENV['HOME']}/.bashrc", "a+") do |f|
+          # exports
+          f.puts 'source $HOME/dotfiles/workspace/customizations.sh'
+        end
       end
     done
   end
