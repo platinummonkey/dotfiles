@@ -38,7 +38,7 @@ namespace :workspaces do
 
   desc "Install custom packages"
   task :install_packages do
-    sh "apt-get update"
-    sh "apt-get install -y socat libsodium23 libsodium-dev tmux"
+    sh "sudo apt-get update"
+    sh "sudo apt-get install -y socat libsodium23 libsodium-dev tmux"
   end
 end
