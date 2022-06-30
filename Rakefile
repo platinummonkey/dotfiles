@@ -20,16 +20,17 @@ namespace :workspaces do
 
   desc "Add Shell Functions"
   task :add_shell_functions do
+
     dirname = File.basename(Dir.getwd)
-    target = "#{ENV['HOME']}/dotfiles"
+    target = "#{Dir.home}/dotfiles"
     unless File.exist?(target)
       File.symlink(dirname, target)
     end
-    for shellrc in %w[ .bashrc .zshrc .config/fish/config.fish ] do
-      if !File.exist?("#{ENV['HOME']}/#{shellrc}") or File.readlines("#{ENV['HOME']}/#{shellrc}").grep(/source $HOME\/dotfiles\/workspace\/customizations\.sh/).size == 0
-        File.open("#{ENV['HOME']}/.bashrc", "a+") do |f|
-          # exports
-          f.puts 'source $HOME/dotfiles/workspace/customizations.sh'
+
+    for shellrc in %w[ .bashrc .zshrc ] do
+      if !File.exist?("#{Dir.home}/#{shellrc}") or File.readlines("#{Dir.home}/#{shellrc}").grep(/source $HOME\/dotfiles\/workspace\/customizations\.sh/).size == 0
+        open("#{Dir.home}/#{shellrc}", 'a+') do |f|
+          f.puts "source $HOME/dotfiles/workspace/customizations.sh"
         end
       end
     done
