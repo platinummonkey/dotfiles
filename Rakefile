@@ -23,7 +23,7 @@ namespace :workspaces do
 
     dirname = File.basename(Dir.getwd)
     target = "#{Dir.home}/dotfiles"
-    unless File.exist?(target)
+    if !File.exist?(target)
       File.symlink(dirname, target)
     end
 
@@ -33,7 +33,7 @@ namespace :workspaces do
           f.puts "source $HOME/dotfiles/workspace/customizations.sh"
         end
       end
-    done
+    end
   end
 
   desc "Install custom packages"
